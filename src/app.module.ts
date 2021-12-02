@@ -6,14 +6,24 @@ import { TestService } from './test/test.service';
 import { OrdersModule } from './orders/orders.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Order } from './orders/entities/order.entity';
-import { join } from 'path';
+// import { join } from 'path';
 
 @Module({
   imports: [
     OrdersModule,
+    // SequelizeModule.forRoot({
+    //   dialect: 'sqlite',
+    //   host: join(__dirname, 'database.sqlite'),
+    //   models: [Order],
+    //   autoLoadModels: true,
+    // }),
     SequelizeModule.forRoot({
-      dialect: 'sqlite',
-      host: join(__dirname, 'database.sqlite'),
+      dialect: 'mssql',
+      host: 'db',
+      port: 3306,
+      database: 'fin',
+      username: 'root',
+      password: 'root',
       models: [Order],
       autoLoadModels: true,
     }),
